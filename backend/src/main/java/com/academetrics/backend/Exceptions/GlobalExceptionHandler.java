@@ -14,7 +14,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-
     @ExceptionHandler(UsernameAlreadyExistException.class)
     public ResponseEntity<?> handleUsernameConflict(UsernameAlreadyExistException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.CONFLICT);
@@ -41,7 +40,7 @@ public class GlobalExceptionHandler {
 
     private ResponseEntity<?> buildErrorResponse(String message, HttpStatus status, Object details) {
         Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
+        body.put("timestamp", LocalDateTime.now().toString());
         body.put("status", status.value());
         body.put("error", status.getReasonPhrase());
         body.put("message", message);

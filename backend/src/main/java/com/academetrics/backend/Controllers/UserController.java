@@ -2,6 +2,7 @@ package com.academetrics.backend.Controllers;
 
 import com.academetrics.backend.DTO.UserDTO.UserCreateDTO;
 import com.academetrics.backend.DTO.UserDTO.UserPrimDTO;
+import com.academetrics.backend.Exceptions.UsernameAlreadyExistException;
 import com.academetrics.backend.Services.UserService;
 import org.apache.coyote.BadRequestException;
 import org.modelmapper.internal.bytebuddy.implementation.bytecode.Throw;
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public UserPrimDTO createUser(@RequestBody UserCreateDTO userCreateDTO) throws BadRequestException{
+    public UserPrimDTO createUser(@RequestBody UserCreateDTO userCreateDTO) throws UsernameAlreadyExistException {
             return userService.createUser(userCreateDTO);
     }
 }

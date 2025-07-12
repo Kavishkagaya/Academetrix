@@ -53,7 +53,7 @@ public class UserService {
         return true;
     }
 
-    public UserPrimDTO createUser(UserCreateDTO userCreateDTO) throws BadRequestException {
+    public UserPrimDTO createUser(UserCreateDTO userCreateDTO) throws UsernameAlreadyExistException {
         if(isUsernameAvailable(userCreateDTO.getUsername())) throw new UsernameAlreadyExistException(userCreateDTO.getUsername());
         User user = convertCreateDTOtoUser(userCreateDTO);
         user = userRepository.save(user);
